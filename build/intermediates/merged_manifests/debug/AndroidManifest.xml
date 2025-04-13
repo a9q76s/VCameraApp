@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vcamera.app.debug"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="33" />
+
+    <!-- الأذونات الأساسية -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- أذونات للبيئة الافتراضية -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <application
+        android:name="com.vcamera.app.VCameraApplication"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VCamera" >
+
+        <!-- النشاط الرئيسي -->
+        <activity
+            android:name="com.vcamera.app.ui.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- نشاط إعدادات الكاميرا -->
+        <activity
+            android:name="com.vcamera.app.ui.CameraSettingsActivity"
+            android:exported="false" />
+
+        <!-- نشاط إدارة التطبيقات -->
+        <activity
+            android:name="com.vcamera.app.ui.AppManagerActivity"
+            android:exported="false" />
+
+        <!-- خدمة الكاميرا الافتراضية -->
+        <service
+            android:name="com.vcamera.app.services.VirtualCameraService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="camera" />
+
+        <!-- مقدم محتوى البيئة الافتراضية -->
+        <provider
+            android:name="com.vcamera.app.providers.VirtualEnvironmentProvider"
+            android:authorities="com.vcamera.app.debug.virtualprovider"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <!-- استقبال عمليات التثبيت والإزالة -->
+        <receiver
+            android:name="com.vcamera.app.receivers.PackageEventReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- المكونات الافتراضية للبيئة الافتراضية -->
+        <meta-data
+            android:name="virtual_environment_version"
+            android:value="2.0" />
+    </application>
+
+</manifest>

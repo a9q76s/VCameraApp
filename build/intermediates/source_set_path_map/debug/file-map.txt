@@ -1,0 +1,8 @@
+com.vcamera.app-pngs-0 /data/data/com.termux/files/home/VCameraApp/build/generated/res/pngs/debug
+com.vcamera.app-resValues-1 /data/data/com.termux/files/home/VCameraApp/build/generated/res/resValues/debug
+com.vcamera.app-rs-2 /data/data/com.termux/files/home/VCameraApp/build/generated/res/rs/debug
+com.vcamera.app-mergeDebugResources-3 /data/data/com.termux/files/home/VCameraApp/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.vcamera.app-mergeDebugResources-4 /data/data/com.termux/files/home/VCameraApp/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.vcamera.app-merged_res-5 /data/data/com.termux/files/home/VCameraApp/build/intermediates/merged_res/debug
+com.vcamera.app-debug-6 /data/data/com.termux/files/home/VCameraApp/src/debug/res
+com.vcamera.app-main-7 /data/data/com.termux/files/home/VCameraApp/src/main/res
